@@ -1,0 +1,169 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --main-color: #98b7c9;
+}
+section {
+  margin: 0 3rem;
+  padding: 20px 0;
+  /* background: #000; */
+  height: 80vh;
+}
+header {
+  padding: 20px;
+  text-align: center;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+header h1 {
+  margin-bottom: 10px;
+  font-size: 32px;
+}
+/* Filter Buttons */
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.filters button {
+  background: #e0e0e0;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-size: 14px;
+}
+.filters button.active, .filters button:hover {
+  background: var(--main-color);
+  color: #fff;
+}
+
+section h2 {
+  margin: 0 0 20px 0;
+}
+/* Body styling for demo */
+body {
+  background: #f0f0f0;
+  font-family: Arial, sans-serif;
+}
+.cards{
+  display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 20px;
+}
+/* Card Container */
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  width: calc((100% / 4) - 20px);
+}
+
+/* Card Header */
+.card-header {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio placeholder */
+}
+
+.card-header .project-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.project-preview {
+  border-radius: 10px 10px 0 0;
+}
+/* Card Body */
+.card-body {
+  padding: 1rem;
+}
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.info img {
+  border-radius: 100%;
+}
+
+/* Title Section */
+.title-section {
+  margin-bottom: 0.75rem;
+}
+
+.project-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.author {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Social Row */
+.social-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.social-btn {
+  flex: 1;
+  border: none;
+  background: #f2f2f2;
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  text-align: center;
+  transition: background 0.2s;
+}
+
+.social-btn:hover {
+  background: #eaeaea;
+}
+
+
+
+.btns-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btns-group button:first-of-type {
+  width: 20%;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  background: var(--main-color); /* you can adjust to your preferred color */
+  color: #fff;
+  border: none;
+}
+/* Action Button */
+.btns-group button {
+  /* width: 100%; */
+  padding: 0.75rem;
+  background: var(--main-color); /* you can adjust to your preferred color */
+  color: #fff;
+  border: 1px solid var(--main-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.action-btn:hover,
+.btns-group button:first-of-type:hover {
+  background: transparent;
+  border: 1px solid var(--main-color);
+  color: var(--main-color);
+}

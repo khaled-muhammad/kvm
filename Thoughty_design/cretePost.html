@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post a Thought - MindVerse</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.18/marked.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/YOUR-FONT-AWESOME-KIT.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      :root {
+        --main-color: #98b7c9;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        padding: 20px;
+      }
+      .container {
+        max-width: 600px;
+        background: white;
+        padding: 20px 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        margin: auto;
+      }
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      input[type="checkbox"] {
+        width: inherit !important;
+      }
+      .tag-container {
+        display: flex;
+        gap: 5px;
+        padding: 20px;
+        flex-wrap: wrap;
+      }
+      .tag {
+        background: var(--main-color);
+        padding: 5px 10px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      .anonymous-toggle {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+      }
+      .preview {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px dashed #aaa;
+        background: #fafafa;
+        border-radius: 5px;
+        min-height: 50px;
+      }
+      .submit-btn {
+        width: 100%;
+        background: var(--main-color);
+        border: none;
+        padding: 10px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: 0.3s;
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      .submit-btn.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Share Your Thought</h2>
+      <input
+        type="text"
+        id="title"
+        placeholder="Title (Max 100 characters)"
+        maxlength="100"
+      />
+
+      <textarea
+        id="content"
+        rows="5"
+        placeholder="Write your thought... (Markdown supported)"
+      ></textarea>
+
+      <div>
+        <strong>Suggested Tags:</strong>
+        <div class="tag-container" id="tagContainer"></div>
+      </div>
+
+      <div class="anonymous-toggle">
+        <input type="checkbox" id="anonymous" />
+        <label for="anonymous">Post Anonymously</label>
+      </div>
+
+      <h4>Live Preview:</h4>
+      <div class="preview" id="preview"></div>
+
+      <button class="submit-btn" id="submitBtn" disabled>Post Thought</button>
+    </div>
+
+    <script>
+      const titleInput = document.getElementById("title");
+      const contentInput = document.getElementById("content");
+      const previewDiv = document.getElementById("preview");
+      const submitBtn = document.getElementById("submitBtn");
+      const tagContainer = document.getElementById("tagContainer");
+
+      // Simulated AI-generated tag suggestions
+      const suggestedTags = [
+        "Innovation",
+        "Philosophy",
+        "Creativity",
+        "Tech",
+        "Society",
+      ];
+      suggestedTags.forEach((tag) => {
+        const tagEl = document.createElement("span");
+        tagEl.classList.add("tag");
+        tagEl.innerText = `#${tag}`;
+        tagEl.onclick = () => alert(`Filtering by ${tag}`);
+        tagContainer.appendChild(tagEl);
+      });
+
+      // Live markdown preview
+      contentInput.addEventListener("input", () => {
+        previewDiv.innerHTML = marked.parse(contentInput.value);
+        checkFields();
+      });
+
+      // Enable submit button when all fields are filled
+      function checkFields() {
+        if (
+          titleInput.value.trim() !== "" &&
+          contentInput.value.trim() !== ""
+        ) {
+          submitBtn.classList.add("active");
+          submitBtn.disabled = false;
+        } else {
+          submitBtn.classList.remove("active");
+          submitBtn.disabled = true;
+        }
+      }
+
+      titleInput.addEventListener("input", checkFields);
+    </script>
+  </body>
+</html>

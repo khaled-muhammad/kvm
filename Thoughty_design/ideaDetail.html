@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MindVerse - Thought Details</title>
+  <!-- Replace with your actual FontAwesome kit code -->
+  <script src="https://kit.fontawesome.com/YOUR-FONT-AWESOME-KIT.js" crossorigin="anonymous"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --primary-color: #03A9F4;  /* Light Blue Primary */
+      --accent-color: #0288D1;   /* Darker Blue Accent */
+      --dark-color: #333;
+      --light-bg: #E0F7FA;       /* Light Blue Background */
+      --bg-gradient: linear-gradient(135deg, #E0F7FA, #B2EBF2);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--dark-color);
+      line-height: 1.6;
+      padding: 20px;
+    }
+    
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      display: flex;
+      gap: 20px;
+      padding: 0 20px;
+    }
+    
+    /* Left Column: Thought Details */
+    .left-column,
+    .right-column {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .left-column {
+      flex: 2;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    
+    .right-column {
+      flex: 1;
+      animation: fadeInUp 1s ease-out;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .thought-header h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      color: var(--primary-color);
+    }
+    
+    .thought-meta {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    
+    .thought-content {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #444;
+      margin-bottom: 30px;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    
+    .action-buttons button {
+      background: var(--primary-color);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+    }
+    
+    .action-buttons button:hover {
+      background: var(--accent-color);
+      transform: translateY(-3px);
+    }
+    
+    .timeline {
+      margin-bottom: 30px;
+    }
+    
+    .timeline h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 5px;
+    }
+    
+    .timeline ul {
+      list-style: none;
+      padding-left: 20px;
+    }
+    
+    .timeline li {
+      margin-bottom: 12px;
+      position: relative;
+      padding-left: 25px;
+      color: #666;
+    }
+    
+    .timeline li::before {
+      content: "●";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--primary-color);
+      font-size: 20px;
+      line-height: 1;
+    }
+    
+    .comments h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 5px;
+    }
+    
+    .comment {
+      background: #f0f8ff;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #b3e5fc;
+    }
+    
+    .comment-meta {
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 8px;
+    }
+    
+    .mind-battle {
+      text-align: center;
+      margin-top: 30px;
+    }
+    
+    .mind-battle button {
+      background: #fff;
+      color: var(--primary-color);
+      padding: 15px 25px;
+      border: 2px solid var(--primary-color);
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    
+    .mind-battle button:hover {
+      background: var(--primary-color);
+      color: #fff;
+      transform: scale(1.05);
+    }
+    
+    .similar-thoughts h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 5px;
+    }
+    
+    .similar-thought {
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .similar-thought h4 {
+      font-size: 18px;
+      color: var(--primary-color);
+    }
+    
+    .similar-thought p {
+      font-size: 14px;
+      color: #666;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Left Column: Thought Details -->
+    <div class="left-column">
+      <div class="thought-header">
+        <h2>How Can We Revolutionize Education?</h2>
+        <div class="thought-meta">Posted by <strong>Jane Doe</strong> | 3 hours ago</div>
+      </div>
+      <div class="thought-content">
+        <p>
+          Imagine a future where education adapts to each student's pace. By integrating innovative technologies and creative teaching methods, we can create a learning environment that truly caters to individual needs, inspiring a generation of lifelong learners.
+        </p>
+      </div>
+      
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button id="upvoteBtn"><i class="fas fa-thumbs-up"></i> Upvote</button>
+        <button id="bookmarkBtn"><i class="fas fa-bookmark"></i> Bookmark</button>
+      </div>
+      
+      <!-- Evolution Timeline -->
+      <div class="timeline">
+        <h3>Evolution Timeline</h3>
+        <ul>
+          <li>Initial Idea Posted - <small>3 hours ago</small></li>
+          <li>Suggestion: Add personalized learning features - <small>2.5 hours ago</small></li>
+          <li>Revision: Include AI-driven insights - <small>2 hours ago</small></li>
+          <li>Community Feedback Integrated - <small>1.5 hours ago</small></li>
+        </ul>
+      </div>
+      
+      <!-- Comments Section -->
+      <div class="comments">
+        <h3>Comments</h3>
+        <div class="comment">
+          <div class="comment-meta">John Smith | 2 hours ago</div>
+          <div class="comment-content">
+            Integrating VR into education could truly change the game!
+          </div>
+        </div>
+        <div class="comment">
+          <div class="comment-meta">Alex Turner | 1.5 hours ago</div>
+          <div class="comment-content">
+            Accessibility must be a priority for any modern education system.
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mind Battle Invite -->
+      <div class="mind-battle">
+        <button id="battleBtn">Challenge this Thought</button>
+      </div>
+    </div>
+    
+    <!-- Right Sidebar: Similar Thoughts -->
+    <div class="right-column">
+      <div class="similar-thoughts">
+        <h3>Similar Thoughts</h3>
+        <div class="similar-thought">
+          <h4>Revolutionizing Learning Spaces</h4>
+          <p>
+            Explore how adaptable environments can enhance interactive learning experiences.
+          </p>
+        </div>
+        <div class="similar-thought">
+          <h4>Personalized Learning Models</h4>
+          <p>
+            Discover innovative ways to tailor education to individual student needs.
+          </p>
+        </div>
+        <div class="similar-thought">
+          <h4>Integrating Technology in Classrooms</h4>
+          <p>
+            Understand the impact of technology on modern teaching methodologies.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Simulated event handlers for action buttons
+    document.getElementById('upvoteBtn').addEventListener('click', function() {
+      alert('You upvoted this thought!');
+    });
+    document.getElementById('bookmarkBtn').addEventListener('click', function() {
+      alert('Thought bookmarked!');
+    });
+    document.getElementById('battleBtn').addEventListener('click', function() {
+      alert('Challenge initiated!');
+    });
+  </script>
+</body>
+</html>
