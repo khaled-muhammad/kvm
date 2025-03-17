@@ -1,0 +1,166 @@
+/* Scoped to the ThoughtyHome component */
+.thoughty-home * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.thoughty-home :root {
+  --header-color: #25303e;
+  --bg-color: #f2f7fa;
+}
+
+.thoughty-home body,
+.thoughty-home .thoughty-home {
+  background-color: var(--bg-color);
+}
+
+.thoughty-home__nav {
+  border-bottom: 0.25px solid rgba(91, 91, 91, 0.712);
+  margin: 0 10rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+}
+
+.thoughty-home__nav-list {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.thoughty-home__nav-item a {
+  text-decoration: none;
+  font-size: 16px;
+  color: var(--header-color);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.thoughty-home__logo img {
+  width: 70px;
+}
+
+.thoughty-home__button {
+  background-color: white;
+  padding: 10px 15px;
+  box-shadow: 0 2px 5px rgba(58, 58, 58, 0.441);
+  border-radius: 20px;
+  border: solid 2px white;
+  cursor: pointer;
+  color: var(--header-color);
+}
+
+.thoughty-home__sec-1 {
+  background-color: var(--bg-color);
+  height: 100vh;
+  padding: 10px;
+  margin: 0 6rem;
+}
+
+.thoughty-home__title {
+  font-size: 40px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: normal;
+  color: var(--header-color);
+  text-align: center;
+  padding: 30px 0 20px 0;
+}
+
+.thoughty-home__content-box {
+  background: #e7ffff3b;
+  color: #36454f;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 1.8px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 16px auto;
+  text-align: justify;
+}
+
+.thoughty-home__sec-1 p {
+  color: rgb(76, 76, 76);
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.thoughty-home__icons-group {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  width: 30%;
+  margin: 0 auto;
+}
+
+.thoughty-home__icons-group i {
+  color: rgba(175, 175, 175, 0.726);
+  border-radius: 20px;
+  padding: 10px;
+  margin: 30px 0;
+}
+
+.thoughty-home__icon--locker {
+  font-size: 17px;
+}
+
+.thoughty-home__icon--small {
+  font-size: 9px;
+}
+
+.thoughty-home__icon--medium {
+  font-size: 12px;
+}
+
+.thoughty-home__feature-container {
+  display: flex;
+  height: 40vh;
+  align-items: center;
+  gap: 50px;
+  justify-content: center;
+}
+
+.thoughty-home__feature {
+  background: rgba(212, 212, 212, 0.686);
+  width: 220px;
+  padding: 30px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 40px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease-in-out;
+}
+
+.thoughty-home__feature:hover {
+  transform: scale(1.05) skewX(-15deg);
+}
+
+.thoughty-home__feature p {
+  padding: 10px 0;
+  color: rgb(76, 76, 76);
+  font-size: 14px;
+  letter-spacing: 1.4px;
+}
+
+.thoughty-home__feature h3 {
+  color: var(--header-color);
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+
+.thoughty-home__feature-icon {
+  color: var(--header-color);
+  padding: 0 0 10px 0;
+  font-size: 20px;
+}
+
+/* Modifier for the larger feature card */
+.thoughty-home__feature--large {
+  width: 300px;
+  padding: 60px 20px;
+}

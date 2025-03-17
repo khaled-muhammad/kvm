@@ -1,34 +1,58 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { auth } from "../services/firebase";
+import "../css/Navbar.css"; // Import the CSS file with your styling
 
 export default function Navbar() {
   const { user } = useAuth();
 
   const handleLogout = async () => {
-    await auth.signOut();
+    try {
+      await auth.signOut();
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
   };
 
   return (
-    <nav className="bg-gray-800 p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-white text-xl font-bold">MindVerse</Link>
-        <div className="space-x-4">
+    <header>
+      <nav className="thoughty-home__nav">
+        <Link to="/" className="thoughty-home__logo">
+          <img src="./logo.png" alt="Thoughty Logo" />
+        </Link>
+        <ul className="thoughty-home__nav-list">
           {user ? (
             <>
-              <Link to="/create" className="text-white">New Thought</Link>
-              <button onClick={handleLogout} className="text-white">
-                Logout
-              </button>
+              <li className="thoughty-home__nav-item">
+                <Link to="/profile">Profile</Link>
+              </li>
+              <li className="thoughty-home__nav-item">
+                <Link to="/create">New Thought</Link>
+              </li>
+              <li className="thoughty-home__nav-item">
+                <Link to="/thoughts">Marketplace</Link>
+              </li>
+              <li className="thoughty-home__nav-item">
+                <button
+                  onClick={handleLogout}
+                  className="thoughty-home__button"
+                >
+                  Logout
+                </button>
+              </li>
             </>
           ) : (
             <>
-              <Link to="/login" className="text-white">Login</Link>
-              <Link to="/register" className="text-white">Register</Link>
+              <li className="thoughty-home__nav-item">
+                <Link to="/login" className="thoughty-home__button">Login</Link>
+              </li>
+              <li className="thoughty-home__nav-item">
+                <Link to="/register" className="thoughty-home__button">Register</Link>
+              </li>
             </>
           )}
-        </div>
-      </div>
-    </nav>
+        </ul>
+      </nav>
+    </header>
   );
 }

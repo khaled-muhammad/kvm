@@ -1,0 +1,83 @@
+.container {
+  max-width: 28rem; /* Approximately 448px */
+  margin: 2.5rem auto;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.errorText {
+  color: #e53e3e;
+  margin-bottom: 1rem;
+}
+
+.googleButton {
+  width: 100%;
+  background-color: #e53e3e;
+  color: #fff;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.375rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.googleButton:hover {
+  background-color: #c53030;
+}
+
+.orText {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+}
+
+.loginButton {
+  width: 100%;
+  background-color: #4299e1;
+  color: #fff;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
+
+.loginButton:hover {
+  background-color: #3182ce;
+}
+
+.registerText {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.registerLink {
+  color: #4299e1;
+  text-decoration: none;
+}
+
+.registerLink:hover {
+  text-decoration: underline;
+}

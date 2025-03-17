@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { fetchThoughts, upvoteThought } from "../../services/api";
+import { marked } from "marked";
 
 const styles = {
-  // Outer container
   section: {
     margin: "0 3rem",
     padding: "20px 0",
     height: "80vh"
   },
-  // Header container
   header: {
     padding: "20px",
     textAlign: "center",
@@ -18,7 +19,6 @@ const styles = {
     marginBottom: "10px",
     fontSize: "32px"
   },
-  // Filters container and buttons
   filters: {
     display: "flex",
     justifyContent: "center",
@@ -33,20 +33,17 @@ const styles = {
     transition: "background 0.3s",
     fontSize: "14px"
   },
-  // Cards container
   cards: {
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
     gap: "20px"
   },
-  // Card container
   card: {
     background: "#ffffff",
     borderRadius: "12px",
     width: "calc((100% / 4) - 20px)"
   },
-  // Card header
   cardHeader: {
     position: "relative",
     width: "100%",
@@ -61,7 +58,6 @@ const styles = {
     objectFit: "cover",
     borderRadius: "10px 10px 0 0"
   },
-  // Card body
   cardBody: {
     padding: "1rem"
   },
@@ -81,7 +77,6 @@ const styles = {
     fontSize: "0.9rem",
     color: "#555"
   },
-  // Buttons group at bottom of card
   btnsGroup: {
     display: "flex",
     justifyContent: "space-between",
@@ -108,90 +103,55 @@ const styles = {
   }
 };
 
-// Helper function to get filter button style based on active state
 const getFilterButtonStyle = (active) => ({
   ...styles.filterButton,
   background: active ? "#98b7c9" : "#e0e0e0",
   color: active ? "#fff" : "#000"
 });
 
-const cardData = [
-  {
-    id: 1,
-    title: "Fiberta",
-    author: "John Doe",
-    category: "trending",
-    preview: "./img/landscape.jpeg",
-    userImg: "./img/user.webp"
-  },
-  {
-    id: 2,
-    title: "Fiberta",
-    author: "John Doe",
-    category: "new",
-    preview: "./img/landscape.jpeg",
-    userImg: "./img/user.webp"
-  },
-  {
-    id: 3,
-    title: "Fiberta",
-    author: "John Doe",
-    category: "challenged",
-    preview: "./img/landscape.jpeg",
-    userImg: "./img/user.webp"
-  },
-  {
-    id: 4,
-    title: "Fiberta",
-    author: "John Doe",
-    category: "trending",
-    preview: "./img/landscape.jpeg",
-    userImg: "./img/user.webp"
-  },
-  {
-    id: 5,
-    title: "Fiberta",
-    author: "John Doe",
-    category: "new",
-    preview: "./img/landscape.jpeg",
-    userImg: "./img/user.webp"
-  },
-  {
-    id: 6,
-    title: "Fiberta",
-    author: "John Doe",
-    category: "challenged",
-    preview: "./img/landscape.jpeg",
-    userImg: "./img/user.webp"
-  },
-  {
-    id: 7,
-    title: "Fiberta",
-    author: "John Doe",
-    category: "trending",
-    preview: "./img/landscape.jpeg",
-    userImg: "./img/user.webp"
-  }
-];
-
-const Feed = () => {
+export default function Feed() {
+  const [thoughts, setThoughts] = useState([]);
   const [activeFilter, setActiveFilter] = useState("all");
 
-  // Filter cards based on active filter ("all" shows all cards)
-  const filteredCards =
-    activeFilter === "all"
-      ? cardData
-      : cardData.filter((card) => card.category === activeFilter);
+  useEffect(() => {
+    const loadThoughts = async () => {
+      try {
+        const { data } = await fetchThoughts();
+        setThoughts(data);
+      } catch (error) {
+        console.error("Error fetching thoughts:", error);
+      }
+    };
+    loadThoughts();
+  }, []);
 
-  // Dummy infinite scroll listener
+  const handleUpvote = async (id) => {
+    try {
+      await upvoteThought(id);
+      setThoughts(thoughts.map(thought =>
+        thought.id === id
+          ? { ...thought, upvotes: thought.upvotes + 1 }
+          : thought
+      ));
+    } catch (error) {
+      console.error("Error upvoting:", error);
+    }
+  };
+
+  const filteredThoughts =
+    activeFilter === "all"
+      ? thoughts
+      : thoughts.filter((thought) => thought.category === activeFilter);
+
+  // Dummy infinite scroll listener (for demonstration)
   useEffect(() => {
     const handleScroll = () => {
       if (
         window.innerHeight + window.pageYOffset >=
         document.body.offsetHeight - 2
       ) {
-        console.log("Reached bottom. Load more cards...");
-        // Here you could fetch or append more card data
+        console.log("Reached bottom. Load more thoughts...");
+        // Here you could fetch or append more data
       }
     };
 
@@ -202,77 +162,74 @@ const Feed = () => {
   return (
     <section style={styles.section}>
       <header style={styles.header}>
-        <h1 style={styles.headerH1}>MindVerse</h1>
+        <h1 style={styles.headerH1}>Marketplace</h1>
         <div style={styles.filters}>
           <button
             style={getFilterButtonStyle(activeFilter === "all")}
             onClick={() => setActiveFilter("all")}
-            data-filter="all"
           >
             All
           </button>
           <button
             style={getFilterButtonStyle(activeFilter === "trending")}
             onClick={() => setActiveFilter("trending")}
-            data-filter="trending"
           >
             Trending
           </button>
           <button
             style={getFilterButtonStyle(activeFilter === "new")}
             onClick={() => setActiveFilter("new")}
-            data-filter="new"
           >
             New
           </button>
           <button
             style={getFilterButtonStyle(activeFilter === "challenged")}
             onClick={() => setActiveFilter("challenged")}
-            data-filter="challenged"
           >
             Most Challenged
           </button>
         </div>
       </header>
+      <br />
       <div style={styles.cards}>
-        {filteredCards.map((card) => (
-          <div
-            key={card.id}
-            style={styles.card}
-            data-category={card.category}
-          >
-            <div style={styles.cardHeader}>
-              <img
-                style={styles.projectPreview}
-                src={card.preview}
-                alt="Project preview"
-              />
-            </div>
-            <div style={styles.cardBody}>
-              <div style={styles.titleSection}>
-                <div style={styles.info}>
-                  <h2 style={styles.projectTitle}>{card.title}</h2>
-                  <img
-                    src={card.userImg}
-                    alt="User"
-                    width="50px"
-                    style={{ borderRadius: "100%" }}
-                  />
-                </div>
-                <p style={styles.author}>by {card.author}</p>
-              </div>
-              <div style={styles.btnsGroup}>
-                <button style={styles.upvoteButton}>
-                  <i className="fa-solid fa-arrow-up"></i>
-                </button>
-                <button style={styles.actionButton}>Earn 10 coins</button>
-              </div>
-            </div>
-          </div>
-        ))}
+  {filteredThoughts.map((thought) => (
+    <div
+      key={thought.id}
+      style={styles.card}
+      data-category={thought.category}
+    >
+      <div style={styles.cardHeader}>
+        <div
+          style={{ padding: "10px" }}
+          dangerouslySetInnerHTML={{ __html: marked.parse(thought.content) }}
+        />
       </div>
+      <div style={styles.cardBody}>
+        <div style={styles.titleSection}>
+          <div style={styles.info}>
+            <h2 style={styles.projectTitle}>{thought.title}</h2>
+            <img
+              src={thought.userImg || "https://cdn-icons-png.flaticon.com/512/168/168905.png"}
+              alt="User"
+              width="50px"
+              style={{ borderRadius: "100%" }}
+            />
+          </div>
+          <p style={styles.author}>by {thought.author || "Unknown"}</p>
+        </div>
+        <div style={styles.btnsGroup}>
+          <button
+            style={styles.upvoteButton}
+            onClick={() => handleUpvote(thought.id)}
+          >
+            <i className="fa-solid fa-arrow-up"></i>
+          </button>
+          <button style={styles.actionButton}>{thought.upvotes} Votes</button>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
     </section>
   );
-};
-
-export default Feed;
+}

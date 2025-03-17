@@ -1,0 +1,39 @@
+.thoughty-home__nav {
+  border-bottom: 0.25px solid rgba(91, 91, 91, 0.712);
+  margin: 0 10rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+}
+
+.thoughty-home__nav-list {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.thoughty-home__nav-item a {
+  text-decoration: none;
+  font-size: 16px;
+  color: var(--header-color);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.thoughty-home__logo img {
+  width: 70px;
+}
+
+.thoughty-home__button {
+  background-color: white;
+  padding: 10px 15px;
+  box-shadow: 0 2px 5px rgba(58, 58, 58, 0.441);
+  border-radius: 20px;
+  border: solid 2px white;
+  cursor: pointer;
+  color: var(--header-color);
+}
+
+li {
+  list-style: none !important;
+}

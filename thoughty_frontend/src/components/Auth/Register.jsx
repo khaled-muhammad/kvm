@@ -2,15 +2,26 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../services/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import styles from "./Register.module.css";
 
 export default function Register() {
+  // Additional fields are included for future use; currently, only email and password are used for Firebase.
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Simple client-side check for password confirmation
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       navigate("/");
@@ -20,48 +31,78 @@ export default function Register() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow">
-      <h2 className="text-2xl font-bold mb-6">Create Account</h2>
-      {error && <p className="text-red-500 mb-4">{error}</p>}
-      
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block text-gray-700 mb-2">Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-2 border rounded"
-            required
-          />
+    <main className={styles.main}>
+      <section className={styles.hero}>
+        <div className={styles.leftSide}>
+          <div className={styles.container}>
+            <div className={styles.logo}>
+              Online<span>Cook</span>
+            </div>
+            <h2>Sign Up</h2>
+            <p>
+              Already a member?{" "}
+              <Link to="/login" className={styles.loginLink}>
+                Log In Now
+              </Link>
+            </p>
+            {error && <p className={styles.errorText}>{error}</p>}
+            <form onSubmit={handleSubmit} className={styles.form}>
+              <div className={styles.formGroup}>
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              </div>
+              <input
+                type="email"
+                placeholder="Email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Username"
+                required
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                required
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+              <button type="submit">Sign Up</button>
+            </form>
+            <div className={styles.socialSignup}>
+              <div className={styles.socialBtn}>
+                <i className="fab fa-facebook-f"></i> Sign Up with Facebook
+              </div>
+              <div className={styles.socialBtn}>
+                <i className="fab fa-google"></i> Sign Up with Google
+              </div>
+            </div>
+          </div>
         </div>
-        
-        <div>
-          <label className="block text-gray-700 mb-2">Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-2 border rounded"
-            required
-            minLength={6}
-          />
-        </div>
-        
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-        >
-          Register
-        </button>
-      </form>
-
-      <p className="mt-4 text-center">
-        Already have an account?{" "}
-        <Link to="/login" className="text-blue-500 hover:underline">
-          Login here
-        </Link>
-      </p>
-    </div>
+        <div className={styles.rightSide}></div>
+      </section>
+    </main>
   );
 }

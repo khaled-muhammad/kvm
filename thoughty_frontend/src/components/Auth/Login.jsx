@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, googleProvider, signInWithPopup } from "../../services/firebase";
+import styles from "./Login.module.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -17,46 +18,55 @@ export default function Login() {
     }
   };
 
+  // Placeholder for handling email login.
+  // You can integrate email/password login logic here using Firebase's signInWithEmailAndPassword
+  const handleEmailLogin = async (e) => {
+    e.preventDefault();
+    // Example:
+    // try {
+    //   await signInWithEmailAndPassword(auth, email, password);
+    //   navigate("/");
+    // } catch (error) {
+    //   setError(error.message);
+    // }
+  };
+
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow">
-      <h2 className="text-2xl font-bold mb-6">Login to MindVerse</h2>
-      {error && <p className="text-red-500 mb-4">{error}</p>}
+    <div className={styles.container}>
+      <h2 className={styles.heading}>Login to MindVerse</h2>
+      {error && <p className={styles.errorText}>{error}</p>}
       
-      <button
-        onClick={handleGoogleLogin}
-        className="w-full bg-red-500 text-white p-2 rounded mb-4 hover:bg-red-600"
-      >
+      <button onClick={handleGoogleLogin} className={styles.googleButton}>
         Continue with Google
       </button>
 
-      <div className="text-center mb-4">or</div>
+      <div className={styles.orText}>or</div>
 
-      <form className="space-y-4">
+      <form onSubmit={handleEmailLogin} className={styles.form}>
         <input
           type="email"
           placeholder="Email"
-          className="w-full p-2 border rounded"
+          className={styles.input}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <input
           type="password"
           placeholder="Password"
-          className="w-full p-2 border rounded"
+          className={styles.input}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-        >
+        <button type="submit" className={styles.loginButton}>
           Login
         </button>
       </form>
 
-      <p className="mt-4 text-center">
+      <p className={styles.registerText}>
         Don't have an account?{" "}
-        <Link to="/register" className="text-blue-500 hover:underline">
+        <Link to="/register" className={styles.registerLink}>
           Register here
         </Link>
       </p>
