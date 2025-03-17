@@ -13,7 +13,7 @@ export default function ProfilePage() {
         />
         <h2>Malak Sabry</h2>
         <p>
-          Passionate thinker, creative innovator, and MindVerse enthusiast.
+          Passionate thinker, creative innovator, and Thoughty enthusiast.
         </p>
         <div className={styles.stats}>
           <div>

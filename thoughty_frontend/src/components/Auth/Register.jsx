@@ -36,7 +36,7 @@ export default function Register() {
         <div className={styles.leftSide}>
           <div className={styles.container}>
             <div className={styles.logo}>
-              Online<span>Cook</span>
+              Though<span>ty</span>
             </div>
             <h2>Sign Up</h2>
             <p>

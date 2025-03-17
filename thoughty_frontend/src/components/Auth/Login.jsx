@@ -33,7 +33,7 @@ export default function Login() {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>Login to MindVerse</h2>
+      <h2 className={styles.heading}>Login to Thoughty</h2>
       {error && <p className={styles.errorText}>{error}</p>}
       
       <button onClick={handleGoogleLogin} className={styles.googleButton}>

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:8000/api/", // Django backend URL
+  baseURL: "https://kvmforever1.pythonanywhere.com/api/", // Django backend URL
 });
 
 // Add auth header interceptor
