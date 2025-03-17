@@ -1,8 +1,13 @@
 body {
-  background-color: #eff9ff; /* Background for the section; consider this if needed */
+  background-color: #eeeeee; /* Background for the section; consider this if needed */
 }
 * {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+:root {
+  --header-color: #25303e;
+  --bg-color: #f2f7fa;
 }
 
 /*:root {

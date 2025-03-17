@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { TypeAnimation } from 'react-type-animation';
+
 import '../css/landing.css';
 
 const ThoughtyHome = () => {
@@ -7,9 +8,21 @@ const ThoughtyHome = () => {
     <div className="thoughty-home">
       <main>
         <section id="sec-1" className="thoughty-home__sec-1">
-          <h1 className="thoughty-home__title">
-            Unleash Your Thoughts. Challenge Ideas. Evolve.
-          </h1>
+          <TypeAnimation
+        sequence={[
+          'Unleash Your Thoughts.', // Types 'One'
+          1000, // Waits 1s
+          'Challenge Ideas. Evolve.', // Deletes 'One' and types 'Two'
+          2000, // Waits 2s
+          () => {
+            console.log('Sequence completed');
+          },
+        ]}
+        wrapper="h1"
+        cursor={true}
+        repeat={Infinity}
+        className='thoughty-home__title'
+      />
           <div className="thoughty-home__content-box">
             <p>
               Thoughty is a digital thought marketplace where creative minds come together to share deep questions, innovative ideas, and unfinished concepts. Here, you can refine your thoughts, spark intellectual debates, brainstorm revolutionary solutions, and engage in friendly mind battles. Join us and transform the way you think!
