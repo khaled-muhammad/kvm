@@ -32,6 +32,13 @@
   border: solid 2px white;
   cursor: pointer;
   color: var(--header-color);
+  transition: all ease-in-out .4s;
+}
+
+.thoughty-home__button:hover {
+  box-shadow: 0 0px 8px rgba(58, 58, 58, 0.158);
+  transform: scale(1.01);
+  background-color: #f2f7fa;
 }
 
 li {

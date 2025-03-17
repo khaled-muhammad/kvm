@@ -43,11 +43,11 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <li className="thoughty-home__nav-item">
-                <Link to="/login" className="thoughty-home__button">Login</Link>
+              <li className="thoughty-home__nav-item thoughty-home__button">
+                <Link to="/login">Login</Link>
               </li>
-              <li className="thoughty-home__nav-item">
-                <Link to="/register" className="thoughty-home__button">Register</Link>
+              <li className="thoughty-home__nav-item thoughty-home__button">
+                <Link to="/register">Register</Link>
               </li>
             </>
           )}
